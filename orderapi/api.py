@@ -12,4 +12,16 @@ class MerchResource(ModelResource):
         resource_name = 'merch'
 
 
+class OrderResource(ModelResource):
+    class Meta:
+        queryset = Order.objects.all()
+        resource_name = 'order'
+
+class OrderDetailsResource(ModelResource):
+    class Meta:
+        queryset = OrderDetails.objects.all()
+        resource_name = 'ordetails'
+
+
+
 
