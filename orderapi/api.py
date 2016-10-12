@@ -1,10 +1,30 @@
 from tastypie.resources import ModelResource
-from orderapi.orderbase.models import Users, Merchandise, Order, OrderDetails
+from orderapi.orderbase.models import UsersOrder, Merchandise, Order, OrderDetails
+from django.contrib.auth.models import User
+from tastypie.authentication import BasicAuthentication, ApiKeyAuthentication, MultiAuthentication
+from tastypie.authorization import DjangoAuthorization
+from django.db.models import signals
+from tastypie.models import create_api_key
 
-class UsersResource(ModelResource):
+
+
+signals.post_save.connect(create_api_key, sender=User)
+
+class UserResource(ModelResource):
     class Meta:
-        queryset = Users.objects.all()
-        resource_name = 'users'
+        queryset = User.objects.all()
+        resource_name = 'auth/user'
+        excludes = ['email', 'password', 'is_superuser']
+        authentication = MultiAuthentication(BasicAuthentication(), ApiKeyAuthentication())
+        authorization = DjangoAuthorization()
+
+
+class UsersOrderResource(ModelResource):
+    class Meta:
+        queryset = UsersOrder.objects.all()
+        resource_name = 'usersorder'
+        authentication = BasicAuthentication()
+        authorization = DjangoAuthorization()       
 
 class MerchResource(ModelResource):
     class Meta:
@@ -16,12 +36,15 @@ class OrderResource(ModelResource):
     class Meta:
         queryset = Order.objects.all()
         resource_name = 'order'
+        authentication = MultiAuthentication(BasicAuthentication(), ApiKeyAuthentication())
+        authorization = DjangoAuthorization()
 
 class OrderDetailsResource(ModelResource):
     class Meta:
         queryset = OrderDetails.objects.all()
         resource_name = 'ordetails'
-
-
+        authentication = MultiAuthentication(BasicAuthentication(), ApiKeyAuthentication())
+        authorization = DjangoAuthorization()
+ 
 
 

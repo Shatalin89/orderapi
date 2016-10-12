@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'orderdb',
         'USER': 'postgres',
-        'PASSWORD': 'gfhfljrc11',
+        'PASSWORD': '000111',
         'HOST': 'localhost',
         'PORT': '5432', 
     }

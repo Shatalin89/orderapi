@@ -2,7 +2,7 @@
 
 from django.db import models
 
-class Users(models.Model):
+class UsersOrder(models.Model):
     user_name = models.CharField(max_length=100)
     user_login = models.CharField(max_length=100)
     user_password = models.CharField(max_length=100, blank=True, default='')
@@ -10,14 +10,7 @@ class Users(models.Model):
     class Meta:
        db_table = u'users_order'
 
-#    def __unicode__(self):
- #       return self.title
-
     def save(self, *args, **kwargs):
-        # For automatic slug generation.
-  #      if not self.slug:
-   #         self.slug = slugify(self.title)[:50]
-
         return super(Users, self).save(*args, **kwargsi)
 
 
@@ -39,7 +32,7 @@ class Merchandise(models.Model):
 
 class Order(models.Model):
     order_num = models.IntegerField()
-    order_user_id = models.ForeignKey(Users)
+    order_user_id = models.ForeignKey(UsersOrder)
     order_description = models.TextField(blank=True, default='')
     order_state = models.CharField(max_length=1)
     order_date = models.DateTimeField(null=True, blank=True)
