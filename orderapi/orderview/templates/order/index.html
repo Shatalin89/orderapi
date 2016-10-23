@@ -1,0 +1,9 @@
+{% if latest_merch_list %}
+    <ul>
+    {% for merch in latest_merch_list %}
+        <li><a href="/api/v1/merch/{{ merch.id }}/">{{ merch.name_merch }} {{merch.merch_count}} шт. </a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No merch are available</p>
+{% endif %}

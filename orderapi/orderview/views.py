@@ -1,14 +1,17 @@
 from django.shortcuts import render
 
 from django.http import HttpResponse
+from django.template import RequestContext, loader
 from orderapi.orderbase.models import Merchandise
+
 
 # Create your views here.
 
 def index(request):
-    latest_merch_list = Merchandise.object.order_by('-name_merch')[:5]
-    output = ', '.join([q.question_text for q in latest_question_list])
-    return HttpResponse(output)
+    latest_merch_list = Merchandise.objects.order_by('-name_merch')[:5]
+    template = loader.get_template('order/index.html')
+    context = RequestContext(request, {'latest_merch_list': latest_merch_list,})
+    return HttpResponse(template.render(context))
 
 
 def detail(request, question_id):
