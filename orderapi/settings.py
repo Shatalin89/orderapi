@@ -83,7 +83,7 @@ DATABASES = {
         'NAME': 'orderdb',
         'USER': 'postgres',
         'PASSWORD': '000111',
-        'HOST': 'localhost',
+        'HOST': '192.168.1.140',
         'PORT': '5432', 
     }
 }
