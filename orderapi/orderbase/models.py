@@ -26,8 +26,11 @@ class Merchandise(models.Model):
     class Meta:
         db_table = u'order_merch_cat'
     
+    def __unicode__(self):
+        return self.title
+    
     def save(self, *args, **kwargs):
-        return super(Merchandise, self).save(*args, **kwargsi)
+        return super(Merchandise, self).save(*args, **kwargs)
 
 
 class Order(models.Model):

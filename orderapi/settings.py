@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 ]
 
 TASTYPIE_DEFAULT_FORMATS = ['json']
-
+API_LIMIT_PER_PAGE = 0
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
