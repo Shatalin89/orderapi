@@ -23,3 +23,8 @@ def results(request, question_id):
 
 def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
+
+
+def upload_photo(request):                                                                                  
+    if request.method=='POST':
+        image = request.FILES['image']                                                                              title1 =''                                                                                                  new_image = Photo(title=title1,photo=image,description='')                                                  new_image.save()                                                                                            response_data=[{"success": "1"}]                                                                            return HttpResponse(simplejson.dumps(response_data), mimetype='application/json') 

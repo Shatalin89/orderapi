@@ -122,8 +122,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
+#APPEND_SLASH = False
+# Static files (CSS, JavaScript, Images)PPEND_SLASH=False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
+
+MEDIA_ROOT ='/home/a_shatalin/image/'
 
 STATIC_URL = '/static/'

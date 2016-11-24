@@ -27,6 +27,11 @@ v1_api.register(OrderDetailsResource())
 v1_api.register(OrderResource())
 v1_api.register(MerchResource()) 
 
+
+
+
+
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
 #    url(r'^blog/', include('orderapi.urls')),
@@ -39,5 +44,7 @@ urlpatterns = [
     url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
     # ex: /polls/5/vote/
     url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+    
+    url(r'^photos/upload/$', views.upload_photo, name='upload'),
 
 ]

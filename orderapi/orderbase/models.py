@@ -1,5 +1,5 @@
 #from __future__ import unicode_literals
-
+from django.utils.text import slugify
 from django.db import models
 
 class UsersOrder(models.Model):
@@ -18,9 +18,9 @@ class Merchandise(models.Model):
     name_merch = models.CharField(max_length=50)
     merch_price = models.CharField(max_length=100,blank=True,default='')
     merch_count = models.CharField(max_length=100)
-    merch_enabled = models.CharField(max_length=1)
-    merch_del = models.CharField(max_length=1)
-    image = models.FilePathField(null=True, blank=True)
+    merch_enabled = models.BooleanField(default=1)
+    merch_del = models.BooleanField(default=0)
+#    image = models.ImageField(upload_to="/images/", null=True, blank=True)
     merch_description = models.TextField(blank=True, default='')
 
     class Meta:
@@ -58,4 +58,16 @@ class OrderDetails(models.Model):
         db_table = u'order_details'
 
 
+class Photo(models.Model):
+    title = models.CharField(max_length=255,blank=True)
+    photo = models.FileField(upload_to='image')
+    description = models.TextField(blank=True)
+    uploaded = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    merch_id = models.ForeignKey(Merchandise, null=True)
+    class Meta:
+        db_table = 'media_photos'
+
+    def __unicode__(self):
+        return '%s' % self.title
  
